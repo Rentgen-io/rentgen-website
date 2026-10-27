@@ -242,6 +242,36 @@ body {
   max-width: 30rem;
 }
 
+.atlas-promo {
+  padding: 1.5rem 0;
+  background: linear-gradient(90deg, rgba(255, 106, 44, 0.08), rgba(15, 23, 42, 0.35));
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.atlas-promo-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.atlas-promo h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1.15rem;
+}
+
+.atlas-promo p {
+  margin: 0;
+  color: var(--fg-muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.atlas-promo .btn {
+  flex-shrink: 0;
+}
+
 /* Buttons */
 
 .btn {
@@ -582,6 +612,12 @@ body {
 }
 
 @media (max-width: 720px) {
+  .atlas-promo-inner {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
   .section {
     padding: 3rem 0;
   }
