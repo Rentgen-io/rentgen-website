@@ -1,45 +1,109 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="robots" content="noindex" />
-  <title>Page not found – Rentgen</title>
-  <link rel="icon" href="/assets/favicon.ico" />
-  <link rel="stylesheet" href="/styles.css" />
-</head>
-<body>
-  <main class="section">
-    <div class="container">
-      <a href="/" class="brand">Rentgen</a>
-      <h1>Page not found</h1>
-      <p id="not-found-message">This page may have moved or no longer exists.</p>
-      <p><a id="return-link" class="btn btn-primary" href="/">Go to Rentgen</a></p>
-      <noscript><p>If you followed an old Spanish link, the English content is available from the homepage and <a href="/api-stories/">API Stories</a>.</p></noscript>
-    </div>
-  </main>
-  <script>
-    (() => {
-      const englishPaths = new Set(["/", "/api-stories/", "/api-stories/404-not-found-handling.html", "/api-stories/Apigee-and-Rentgen-managing-API-traffic-is-not-same-as-testing-API-behavior.html", "/api-stories/Bruno-vs-Rentgen-same-cURL-different-job.html", "/api-stories/ChatGPT-when-malformed-data-crashes-a-non-critical-API.html", "/api-stories/HTTPie-and-Rentgen-first-talk-to-the-API-then-make-it-uncomfortable.html", "/api-stories/Hoppscotch-vs-Rentgen-API-client-and-API-reality-check-are-not-the-same-job.html", "/api-stories/Insomnia-vs-Rentgen-powerful-API-platform-vs-raw-API-reality.html", "/api-stories/REST-assured-and-Rentgen-coded-API-tests-and-eality-check-before-them.html", "/api-stories/ReadyAPI-and-Rentgen-enterprise-test-suites-and-step-before-them.html", "/api-stories/Schemathesis-and-Rentgen-specification-based-testing-vs-one-working-request.html", "/api-stories/StackHawk-and-Rentgen-API-security-scanning-and-API-hygiene-before-automation.html", "/api-stories/Swagger-and-Rentgen-what-your-API-promises-vs-how-it-actually-behaves.html", "/api-stories/Thunder-Client-and-Rentgen-testing-inside-editor-reality-checking-outside-happy-path.html", "/api-stories/Tusk-Drift-and-Rentgen-replaying-real-traffic-vs-breaking-one-request-early.html", "/api-stories/amazon-profile-update-api-testing-case-study.html", "/api-stories/array-list-without-pagination.html", "/api-stories/automation-before-automation.html", "/api-stories/boundary-value-analysis.html", "/api-stories/burp-suite-intruder-and-rentgen.html", "/api-stories/cURL-and-Rentgen-one-proves-it-works-the-other-proves-what-breaks.html", "/api-stories/cache-control-for-private-api.html", "/api-stories/clickjacking-protection.html", "/api-stories/cors-policy-check.html", "/api-stories/ffuf-and-Rentgen-web-fuzzing-and-API-hygiene-are-not-same-planet.html", "/api-stories/hsts-strict-transport-security.html", "/api-stories/index.html", "/api-stories/jira-api-testing-with-rentgen.html", "/api-stories/karate-and-rentgen.html", "/api-stories/large-payload-handling.html", "/api-stories/load-test.html", "/api-stories/mime-sniffing-protection.html", "/api-stories/missing-authorization-handling.html", "/api-stories/network-share-calculation.html", "/api-stories/options-method-handling.html", "/api-stories/owasp-zap-and-rentgen.html", "/api-stories/performance-insights-median-response-time.html", "/api-stories/ping-latency.html", "/api-stories/protonpass-api-under-rentgen.html", "/api-stories/reflected-payload-safety.html", "/api-stories/rentgen-not-a-postman-replacement.html", "/api-stories/rentgen-vs-apidog-not-competitors-different-moments.html", "/api-stories/response-size-check.html", "/api-stories/rest-clients-vs-api-testing.html", "/api-stories/server-header-does-not-expose-version.html", "/api-stories/trimming-test.html", "/api-stories/unsupported-http-method-handling.html", "/api-stories/uppercase-domain-handling.html", "/api-stories/uppercase-path-handling.html"]);
-      const path = window.location.pathname;
-      if (path !== '/ES' && !path.startsWith('/ES/')) return;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Page not found – Rentgen</title>
+    <link rel="icon" href="/assets/favicon.ico" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="section">
+      <div class="container">
+        <a href="/" class="brand">Rentgen</a>
+        <h1>Page not found</h1>
+        <p id="not-found-message">
+          This page may have moved or no longer exists.
+        </p>
+        <p>
+          <a id="return-link" class="btn btn-primary" href="/">Go to Rentgen</a>
+        </p>
+        <noscript
+          ><p>
+            If you followed an old Spanish link, the English content is
+            available from the homepage and
+            <a href="/api-stories/">API Stories</a>.
+          </p></noscript
+        >
+      </div>
+    </main>
+    <script>
+      (() => {
+        const englishPaths = new Set([
+          "/",
+          "/api-stories/",
+          "/api-stories/404-not-found-handling.html",
+          "/api-stories/Apigee-and-Rentgen-managing-API-traffic-is-not-same-as-testing-API-behavior.html",
+          "/api-stories/Bruno-vs-Rentgen-same-cURL-different-job.html",
+          "/api-stories/ChatGPT-when-malformed-data-crashes-a-non-critical-API.html",
+          "/api-stories/HTTPie-and-Rentgen-first-talk-to-the-API-then-make-it-uncomfortable.html",
+          "/api-stories/Hoppscotch-vs-Rentgen-API-client-and-API-reality-check-are-not-the-same-job.html",
+          "/api-stories/Insomnia-vs-Rentgen-powerful-API-platform-vs-raw-API-reality.html",
+          "/api-stories/REST-assured-and-Rentgen-coded-API-tests-and-eality-check-before-them.html",
+          "/api-stories/ReadyAPI-and-Rentgen-enterprise-test-suites-and-step-before-them.html",
+          "/api-stories/Schemathesis-and-Rentgen-specification-based-testing-vs-one-working-request.html",
+          "/api-stories/StackHawk-and-Rentgen-API-security-scanning-and-API-hygiene-before-automation.html",
+          "/api-stories/Swagger-and-Rentgen-what-your-API-promises-vs-how-it-actually-behaves.html",
+          "/api-stories/Thunder-Client-and-Rentgen-testing-inside-editor-reality-checking-outside-happy-path.html",
+          "/api-stories/Tusk-Drift-and-Rentgen-replaying-real-traffic-vs-breaking-one-request-early.html",
+          "/api-stories/amazon-profile-update-api-testing-case-study.html",
+          "/api-stories/array-list-without-pagination.html",
+          "/api-stories/automation-before-automation.html",
+          "/api-stories/boundary-value-analysis.html",
+          "/api-stories/burp-suite-intruder-and-rentgen.html",
+          "/api-stories/cURL-and-Rentgen-one-proves-it-works-the-other-proves-what-breaks.html",
+          "/api-stories/cache-control-for-private-api.html",
+          "/api-stories/clickjacking-protection.html",
+          "/api-stories/cors-policy-check.html",
+          "/api-stories/ffuf-and-Rentgen-web-fuzzing-and-API-hygiene-are-not-same-planet.html",
+          "/api-stories/hsts-strict-transport-security.html",
+          "/api-stories/index.html",
+          "/api-stories/jira-api-testing-with-rentgen.html",
+          "/api-stories/karate-and-rentgen.html",
+          "/api-stories/large-payload-handling.html",
+          "/api-stories/load-test.html",
+          "/api-stories/mime-sniffing-protection.html",
+          "/api-stories/missing-authorization-handling.html",
+          "/api-stories/network-share-calculation.html",
+          "/api-stories/options-method-handling.html",
+          "/api-stories/owasp-zap-and-rentgen.html",
+          "/api-stories/performance-insights-median-response-time.html",
+          "/api-stories/ping-latency.html",
+          "/api-stories/protonpass-api-under-rentgen.html",
+          "/api-stories/reflected-payload-safety.html",
+          "/api-stories/rentgen-not-a-postman-replacement.html",
+          "/api-stories/rentgen-vs-apidog-not-competitors-different-moments.html",
+          "/api-stories/response-size-check.html",
+          "/api-stories/rest-clients-vs-api-testing.html",
+          "/api-stories/server-header-does-not-expose-version.html",
+          "/api-stories/trimming-test.html",
+          "/api-stories/unsupported-http-method-handling.html",
+          "/api-stories/uppercase-domain-handling.html",
+          "/api-stories/uppercase-path-handling.html",
+        ]);
+        const path = window.location.pathname;
+        if (path !== "/ES" && !path.startsWith("/ES/")) return;
 
-      let target = path.slice(3) || '/';
-      if (target === '/index.html') target = '/';
-      if (target === '/api-stories' || target === '/api-stories/index.html') target = '/api-stories/';
+        let target = path.slice(3) || "/";
+        if (target === "/index.html") target = "/";
+        if (target === "/api-stories" || target === "/api-stories/index.html")
+          target = "/api-stories/";
 
-      if (englishPaths.has(target)) {
-        const link = document.getElementById('return-link');
-        link.href = target;
-        link.textContent = 'Continue in English';
-        document.getElementById('not-found-message').textContent =
-          'The Spanish version has been retired. Redirecting you to the English page…';
-        window.location.replace(target + window.location.search + window.location.hash);
-      } else {
-        document.getElementById('not-found-message').textContent =
-          'The Spanish version has been retired. Visit Rentgen in English using the link below.';
-      }
-    })();
-  </script>
-</body>
+        if (englishPaths.has(target)) {
+          const link = document.getElementById("return-link");
+          link.href = target;
+          link.textContent = "Continue in English";
+          document.getElementById("not-found-message").textContent =
+            "The Spanish version has been retired. Redirecting you to the English page…";
+          window.location.replace(
+            target + window.location.search + window.location.hash,
+          );
+        } else {
+          document.getElementById("not-found-message").textContent =
+            "The Spanish version has been retired. Visit Rentgen in English using the link below.";
+        }
+      })();
+    </script>
+  </body>
 </html>
