@@ -11,3 +11,11 @@ Source for [rentgen.io](https://rentgen.io) — the landing page for **Rentgen**
 ## What's in this repo
 
 Plain static site — no build step, no framework.
+
+## SEO maintenance
+
+After adding or removing a public HTML page, regenerate the sitemap:
+
+```sh
+python3 scripts/generate-sitemap.py
+```

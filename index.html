@@ -1,522 +1,663 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Rentgen – Generate API Tests from One cURL Request</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="One cURL in, hundreds of API tests out. Download Rentgen to generate and run checks locally, without writing scripts, creating an account, or cloud setup."
+    />
+    <link rel="canonical" href="https://rentgen.io/" />
 
-<head>
-  <meta charset="UTF-8" />
-  <title>Rentgen – Automation Before Automation: Finding API Bugs When You Have No Tests</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description"
-    content="Rentgen is a secure, local-only API testing tool. No accounts, no tracking, no logging – just deep backend tests that stay on your machine." />
-  <link rel="canonical" href="https://rentgen.io/" />
-  
-  <link rel="alternate" hreflang="x-default" href="https://rentgen.io/" /> 
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link rel="icon" type="image/png" href="assets/rentgen-logo.png" />
+    <link rel="apple-touch-icon" href="assets/rentgen-logo.png" />
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-  <link rel="icon" type="image/png" href="assets/rentgen-logo.png" />
-  <link rel="apple-touch-icon" href="assets/rentgen-logo.png" />
+    <!-- Open Graph / Social -->
+    <meta
+      property="og:title"
+      content="Rentgen – Generate API Tests from One cURL Request"
+    />
+    <meta
+      property="og:description"
+      content="One cURL in, hundreds of API tests out. Download Rentgen to generate and run checks locally, without writing scripts, creating an account, or cloud setup."
+    />
+    <meta
+      property="og:image"
+      content="https://rentgen.io/assets/og-image.png"
+    />
+    <meta property="og:url" content="https://rentgen.io/" />
+    <meta property="og:type" content="website" />
 
-  <!-- Open Graph / Social -->
-  <meta property="og:title" content="Rentgen – Automation Before Automation: Finding API Bugs When You Have No Tests" />
-  <meta property="og:description" content="No cloud. No tracking. No logs. Just brutal API testing on your machine." />
-  <meta property="og:image" content="https://rentgen.io/assets/og-image.png" />
-  <meta property="og:url" content="https://rentgen.io/" />
-  <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Rentgen – Generate API Tests from One cURL Request"
+    />
+    <meta
+      name="twitter:description"
+      content="One cURL in, hundreds of API tests out. Download Rentgen to generate and run checks locally, without writing scripts, creating an account, or cloud setup."
+    />
+    <meta
+      name="twitter:image"
+      content="https://rentgen.io/assets/og-image.png"
+    />
 
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Rentgen – Automation Before Automation: Finding API Bugs When You Have No Tests" />
-  <meta name="twitter:description" content="No cloud. No tracking. No logs. Just brutal API testing on your machine." />
-  <meta name="twitter:image" content="https://rentgen.io/assets/og-image.png" />
+    <link rel="stylesheet" href="styles.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Rentgen",
+        "url": "https://rentgen.io/",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "macOS, Windows, Linux",
+        "description": "One cURL in, hundreds of API tests out. Download Rentgen to generate and run checks locally, without writing scripts, creating an account, or cloud setup.",
+        "downloadUrl": "https://rentgen.io/#downloads"
+      }
+    </script>
+  </head>
 
-  <link rel="stylesheet" href="styles.css" />
-</head>
-
-<body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="#top" class="brand">
-        <img src="assets/rentgen-logo.png" alt="Rentgen logo" class="brand-logo" />
-        <span class="brand-name">Rentgen</span>
-      </a>
-      <button class="nav-toggle" aria-label="Toggle navigation">
-        <span></span><span></span>
-      </button>
-      <nav class="site-nav">
-        <a href="#features">Features</a>
-        <a href="#security">Security</a>
-        <a href="#downloads">Downloads</a>
-        <a href="#cases">Case studies</a>
-        <a href="#github">GitHub</a>
-        <a href="/api-stories/">API Stories</a>
-        <a href="/dedicated/">Dedicated Rentgen</a>
-
-      </nav>
-    </div>
-  </header>
-
-  <main id="top">
-    <!-- Hero -->
-    <section class="hero">
-      <div class="container hero-inner">
-        <div class="hero-copy">
-          <p class="eyebrow">Local API testing · No test scripts required</p>
-          <h1>One cURL in. Hundreds of tests out.</h1>
-          <p class="hero-subtitle">
-            Download Rentgen, paste a working cURL request, and generate API tests
-            without writing scripts. Run them locally to find validation failures,
-            unexpected errors, and inconsistent responses. No account. No cloud setup.
-          </p>
-          <div class="hero-badges">
-            <span class="badge">No cloud</span>
-            <span class="badge">No telemetry</span>
-            <span class="badge">No account</span>
-          </div>
-          <div class="hero-cta">
-            <a href="https://github.com/Rentgen-io/Rentgen/releases" class="btn btn-primary">Download Rentgen</a>
-            <details class="download-alternative">
-              <summary class="btn btn-ghost">Alternative download <span aria-hidden="true">&#9662;</span></summary>
-              <div class="download-alternative-menu">
-                <a href="https://pub-355476c48cdf4c0fb7b488d2fa85c207.r2.dev/v2.0.0/Rentgen-v2.0.0-mac-arm64.dmg">macOS (Apple Silicon)</a>
-                <a href="https://pub-355476c48cdf4c0fb7b488d2fa85c207.r2.dev/v2.0.0/Rentgen-v2.0.0-win-x64.exe">Windows x64</a>
-              </div>
-            </details>
-            <a href="https://github.com/Rentgen-io/Rentgen" class="btn btn-ghost">View on GitHub</a>
-            <a href="cli/" class="btn btn-ghost">CI / CD</a>
-          </div>
-          <p class="hero-footnote">
-            Download → Import cURL → Generate tests → Run and inspect results.
-            Test counts depend on your request and the checks you enable.
-          </p>
-        </div>
-
-        <!-- Placeholder for animated GIF / demo -->
-        <aside class="hero-media">
-        <div class="media-frame">
-          <div class="media-label">See it in action: from cURL to test results</div>
-
-          <!-- Preview GIF vietoje kortelės -->
-          <div class="media-placeholder">
-            <img src="assets/rentgen-demo.gif" alt="Rentgen demo" id="demoGif" />
-          </div>
-        </div>
-      </aside>
-
-      <!-- FULLSCREEN MODAL – DEDAM PO HERO, NE VIDUJ media-frame -->
-      <div id="gifModal" class="gif-modal">
-        <span class="gif-close">&times;</span>
-        <img class="gif-modal-content" id="gifModalImage" />
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="#top" class="brand">
+          <img
+            src="assets/rentgen-logo.png"
+            alt="Rentgen logo"
+            class="brand-logo"
+          />
+          <span class="brand-name">Rentgen</span>
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span></span><span></span>
+        </button>
+        <nav class="site-nav">
+          <a href="#features">Features</a>
+          <a href="#security">Security</a>
+          <a href="#downloads">Downloads</a>
+          <a href="#cases">Case studies</a>
+          <a href="#github">GitHub</a>
+          <a href="/api-stories/">API Stories</a>
+          <a href="/dedicated/">Dedicated Rentgen</a>
+        </nav>
       </div>
-      </div>
-    </section>
+    </header>
 
-    <!-- Features -->
-    <section id="features" class="section">
-      <div class="container">
-        <header class="section-header">
-          <h2>Before you write tests, run Rentgen. See what your API is really doing.</h2>
-          <p>
-            Rentgen doesn’t just send requests – it stress-tests your
-            assumptions. From trimming and validation to boundary and enum
-            tests, everything is generated from a single cURL.
-          </p>
-        </header>
-
-        <!-- Rentgen placement / lifecycle -->
-        <div class="rentgen-flow reveal">
-          <div class="flow-head">
-            <h3>Where Rentgen fits (it replaces nothing)</h3>
-            <p>
-              Developers usually do a quick manual “does it return 200?” check. Rentgen turns that moment into
-              real coverage — before automation, CI/CD, and release gates.
+    <main id="top">
+      <!-- Hero -->
+      <section class="hero">
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <p class="eyebrow">Local API testing · No test scripts required</p>
+            <h1>One cURL in. Hundreds of tests out.</h1>
+            <p class="hero-subtitle">
+              Download Rentgen, paste a working cURL request, and generate API
+              tests without writing scripts. Run them locally to find validation
+              failures, unexpected errors, and inconsistent responses. No
+              account. No cloud setup.
             </p>
-          </div>
-
-          <ol class="flow-steps" aria-label="API delivery workflow">
-            <li class="flow-step">
-              <div class="step-badge">1</div>
-              <div class="step-body">
-                <div class="step-title">Build / change an endpoint</div>
-                <div class="step-desc">You just shipped code. No integration tests yet. No confidence yet.</div>
-                <div class="step-meta">dev branch · local env</div>
-              </div>
-            </li>
-
-            <li class="flow-step flow-step--rentgen">
-              <div class="step-badge">2</div>
-              <div class="step-body">
-                <div class="step-title">
-                  Run Rentgen (pre-testing)
-                  <span class="pill">THE GAP</span>
-                </div>
-                <div class="step-desc">
-                  Paste one cURL → generate 50–200 tests (invalid data, boundaries, trimming, headers, security, etc).
-                  Get a fast reality check <strong>before</strong> anyone writes automation.
-                </div>
-                <div class="step-meta">local-only · no cloud · no scripts</div>
-              </div>
-            </li>
-
-            <li class="flow-step">
-              <div class="step-badge">3</div>
-              <div class="step-body">
-                <div class="step-title">Deploy to staging / test</div>
-                <div class="step-desc">Now you have a candidate build worth deeper verification.</div>
-                <div class="step-meta">staging · test env</div>
-              </div>
-            </li>
-
-            <li class="flow-step">
-              <div class="step-badge">4</div>
-              <div class="step-body">
-                <div class="step-title">Automation & regression suite</div>
-                <div class="step-desc">Write/extend tests where it actually makes sense long-term.</div>
-                <div class="step-meta">RestAssured · Playwright · Postman · contract tests</div>
-              </div>
-            </li>
-
-            <li class="flow-step">
-              <div class="step-badge">5</div>
-              <div class="step-body">
-                <div class="step-title">CI/CD gates</div>
-                <div class="step-desc">Run suites repeatedly, enforce quality gates, prevent regressions.</div>
-                <div class="step-meta">pipelines · nightly · PR checks</div>
-              </div>
-            </li>
-
-            <li class="flow-step">
-              <div class="step-badge">6</div>
-              <div class="step-body">
-                <div class="step-title">Release</div>
-                <div class="step-desc">Ship with higher confidence and fewer “it worked for me” surprises.</div>
-                <div class="step-meta">production</div>
-              </div>
-            </li>
-          </ol>
-
-          <div class="flow-foot">
-            <div class="flow-note">
-              <strong>Key idea:</strong> Rentgen lives <em>before</em> testing frameworks.
-              It turns the manual cURL/Postman moment into fast, structured coverage — then your existing automation takes over.
+            <div class="hero-badges">
+              <span class="badge">No cloud</span>
+              <span class="badge">No telemetry</span>
+              <span class="badge">No account</span>
             </div>
+            <div class="hero-cta">
+              <a
+                href="https://github.com/Rentgen-io/Rentgen/releases"
+                class="btn btn-primary"
+                >Download Rentgen</a
+              >
+              <details class="download-alternative">
+                <summary class="btn btn-ghost">
+                  Alternative download <span aria-hidden="true">&#9662;</span>
+                </summary>
+                <div class="download-alternative-menu">
+                  <a
+                    href="https://pub-355476c48cdf4c0fb7b488d2fa85c207.r2.dev/v2.0.0/Rentgen-v2.0.0-mac-arm64.dmg"
+                    >macOS (Apple Silicon)</a
+                  >
+                  <a
+                    href="https://pub-355476c48cdf4c0fb7b488d2fa85c207.r2.dev/v2.0.0/Rentgen-v2.0.0-win-x64.exe"
+                    >Windows x64</a
+                  >
+                </div>
+              </details>
+              <a
+                href="https://github.com/Rentgen-io/Rentgen"
+                class="btn btn-ghost"
+                >View on GitHub</a
+              >
+              <a href="cli/" class="btn btn-ghost">CI / CD</a>
+            </div>
+            <p class="hero-footnote">
+              Download → Import cURL → Generate tests → Run and inspect results.
+              Test counts depend on your request and the checks you enable.
+            </p>
+          </div>
+
+          <!-- Placeholder for animated GIF / demo -->
+          <aside class="hero-media">
+            <div class="media-frame">
+              <div class="media-label">
+                See it in action: from cURL to test results
+              </div>
+
+              <!-- Preview GIF vietoje kortelės -->
+              <div class="media-placeholder">
+                <img
+                  src="assets/rentgen-demo.gif"
+                  alt="Rentgen demo"
+                  id="demoGif"
+                />
+              </div>
+            </div>
+          </aside>
+
+          <!-- FULLSCREEN MODAL – DEDAM PO HERO, NE VIDUJ media-frame -->
+          <div id="gifModal" class="gif-modal">
+            <span class="gif-close">&times;</span>
+            <img class="gif-modal-content" id="gifModalImage" />
           </div>
         </div>
+      </section>
 
-        <br>
-
-        <div class="grid features-grid reveal">
-          <article class="card">
-            <h3>Single cURL in, hundreds of tests out</h3>
-            <p>
-              Paste a cURL and let Rentgen expand it into a full test suite:
-              trims, invalid values, boundary conditions, enum variations and
-              more. Perfect for catching the “this will never happen” bugs.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>API testing tool before testing</h3>
-            <p>
-              Rentgen checks how your API handles unexpected input:
-              leading/trailing spaces, wrong casing, malformed payloads,
-              missing fields. It doesn’t assume the happy path – it tries to
-              break it.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>Works offline, by design</h3>
-            <p>
-              No cloud backend, no SaaS layer, no hidden HTTP calls. Rentgen
-              runs as a desktop app on your machine. Perfect for regulated
-              environments and sensitive APIs.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>Battle-tested on real APIs</h3>
-            <p>
-              We pointed Rentgen at ChatGPT’s API and found real issues in
-              production. OpenAI fixed them immediately – that’s the level of
-              depth Rentgen brings to your own APIs.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Security / Privacy -->
-    <section id="security" class="section section-accent">
-      <div class="container security-grid">
-        <div>
+      <!-- Features -->
+      <section id="features" class="section">
+        <div class="container">
           <header class="section-header">
             <h2>
-              Security & privacy first. Not as a feature – as a constraint.
+              Before you write tests, run Rentgen. See what your API is really
+              doing.
             </h2>
+            <p>
+              Rentgen doesn’t just send requests – it stress-tests your
+              assumptions. From trimming and validation to boundary and enum
+              tests, everything is generated from a single cURL.
+            </p>
           </header>
-          <ul class="checklist">
-            <li>
-              <span>🔒</span><strong>No accounts.</strong> Install and use. No
-              sign-up, no onboarding flow, no user database.
-            </li>
-            <li>
-              <span>🕵️‍♂️</span><strong>No tracking.</strong> No analytics, no
-              telemetry, no “usage metrics”. We don’t need your API data to
-              improve the product.
-            </li>
-            <li>
-              <span>🗑</span><strong>No logging.</strong> Requests and
-              responses stay on your machine. Rentgen doesn’t upload or store
-              them anywhere.
-            </li>
-            <li>
-              <span>🏢</span><strong>Safe for regulated environments.</strong> Works
-              completely offline – ideal for banking, government, defence and
-              internal APIs.
-            </li>
-          </ul>
-        </div>
-        <div class="security-card">
-          <h3>Use Rentgen where cloud tools are forbidden.</h3>
-          <p>
-            If your security team blocks Postman sync, forbids SaaS API tools
-            or bans external AI, Rentgen still works. Everything runs locally
-            – security officers can read the code and sleep at night.
-          </p>
-        </div>
-      </div>
-    </section>
 
-    <!-- Downloads -->
-    <section id="downloads" class="section">
-      <div class="container">
-        <header class="section-header">
-          <h2>Download Rentgen</h2>
-          <p>
-            Native desktop builds for your OS. No installers that phone home –
-            just the app.
-          </p>
-        </header>
+          <!-- Rentgen placement / lifecycle -->
+          <div class="rentgen-flow reveal">
+            <div class="flow-head">
+              <h3>Where Rentgen fits (it replaces nothing)</h3>
+              <p>
+                Developers usually do a quick manual “does it return 200?”
+                check. Rentgen turns that moment into real coverage — before
+                automation, CI/CD, and release gates.
+              </p>
+            </div>
 
-        <div class="grid download-grid">
-          <div class="download-card">
-            <h3>macOS</h3>
+            <ol class="flow-steps" aria-label="API delivery workflow">
+              <li class="flow-step">
+                <div class="step-badge">1</div>
+                <div class="step-body">
+                  <div class="step-title">Build / change an endpoint</div>
+                  <div class="step-desc">
+                    You just shipped code. No integration tests yet. No
+                    confidence yet.
+                  </div>
+                  <div class="step-meta">dev branch · local env</div>
+                </div>
+              </li>
 
-            <a href="https://github.com/Rentgen-io/Rentgen/releases/" class="btn btn-primary">Download for macOS</a>
-            <p class="download-meta">Apple Silicon & Intel · .dmg / .zip</p>
+              <li class="flow-step flow-step--rentgen">
+                <div class="step-badge">2</div>
+                <div class="step-body">
+                  <div class="step-title">
+                    Run Rentgen (pre-testing)
+                    <span class="pill">THE GAP</span>
+                  </div>
+                  <div class="step-desc">
+                    Paste one cURL → generate 50–200 tests (invalid data,
+                    boundaries, trimming, headers, security, etc). Get a fast
+                    reality check <strong>before</strong> anyone writes
+                    automation.
+                  </div>
+                  <div class="step-meta">
+                    local-only · no cloud · no scripts
+                  </div>
+                </div>
+              </li>
+
+              <li class="flow-step">
+                <div class="step-badge">3</div>
+                <div class="step-body">
+                  <div class="step-title">Deploy to staging / test</div>
+                  <div class="step-desc">
+                    Now you have a candidate build worth deeper verification.
+                  </div>
+                  <div class="step-meta">staging · test env</div>
+                </div>
+              </li>
+
+              <li class="flow-step">
+                <div class="step-badge">4</div>
+                <div class="step-body">
+                  <div class="step-title">Automation & regression suite</div>
+                  <div class="step-desc">
+                    Write/extend tests where it actually makes sense long-term.
+                  </div>
+                  <div class="step-meta">
+                    RestAssured · Playwright · Postman · contract tests
+                  </div>
+                </div>
+              </li>
+
+              <li class="flow-step">
+                <div class="step-badge">5</div>
+                <div class="step-body">
+                  <div class="step-title">CI/CD gates</div>
+                  <div class="step-desc">
+                    Run suites repeatedly, enforce quality gates, prevent
+                    regressions.
+                  </div>
+                  <div class="step-meta">pipelines · nightly · PR checks</div>
+                </div>
+              </li>
+
+              <li class="flow-step">
+                <div class="step-badge">6</div>
+                <div class="step-body">
+                  <div class="step-title">Release</div>
+                  <div class="step-desc">
+                    Ship with higher confidence and fewer “it worked for me”
+                    surprises.
+                  </div>
+                  <div class="step-meta">production</div>
+                </div>
+              </li>
+            </ol>
+
+            <div class="flow-foot">
+              <div class="flow-note">
+                <strong>Key idea:</strong> Rentgen lives <em>before</em> testing
+                frameworks. It turns the manual cURL/Postman moment into fast,
+                structured coverage — then your existing automation takes over.
+              </div>
+            </div>
           </div>
-          <div class="download-card">
-            <h3>Windows</h3>
-            <a href="https://github.com/Rentgen-io/Rentgen/releases/" class="btn btn-primary">Download for Windows</a>
-            <p class="download-meta">Windows 10+ · .exe / .zip</p>
-          </div>
-          <div class="download-card">
-            <h3>Linux</h3>
-            <a href="https://github.com/Rentgen-io/Rentgen/releases/" class="btn btn-primary">Download for Linux</a>
-            <p class="download-meta">AppImage / tar.gz</p>
+
+          <br />
+
+          <div class="grid features-grid reveal">
+            <article class="card">
+              <h3>Single cURL in, hundreds of tests out</h3>
+              <p>
+                Paste a cURL and let Rentgen expand it into a full test suite:
+                trims, invalid values, boundary conditions, enum variations and
+                more. Perfect for catching the “this will never happen” bugs.
+              </p>
+            </article>
+
+            <article class="card">
+              <h3>API testing tool before testing</h3>
+              <p>
+                Rentgen checks how your API handles unexpected input:
+                leading/trailing spaces, wrong casing, malformed payloads,
+                missing fields. It doesn’t assume the happy path – it tries to
+                break it.
+              </p>
+            </article>
+
+            <article class="card">
+              <h3>Works offline, by design</h3>
+              <p>
+                No cloud backend, no SaaS layer, no hidden HTTP calls. Rentgen
+                runs as a desktop app on your machine. Perfect for regulated
+                environments and sensitive APIs.
+              </p>
+            </article>
+
+            <article class="card">
+              <h3>Battle-tested on real APIs</h3>
+              <p>
+                We pointed Rentgen at ChatGPT’s API and found real issues in
+                production. OpenAI fixed them immediately – that’s the level of
+                depth Rentgen brings to your own APIs.
+              </p>
+            </article>
           </div>
         </div>
+      </section>
 
-        <p class="downloads-footnote">
-          All binaries are built from the open GitHub repository. Verify
-          signatures, diff releases, and review the code anytime.
-        </p>
-      </div>
-    </section>
-
-    <!-- Case studies -->
-    <section id="cases" class="section section-alt">
-      <div class="container">
-        <header class="section-header">
-          <h2>Case studies & API stories</h2>
-          <p>
-            Real APIs. Real bugs. Real fixes. We’re gradually publishing how
-            Rentgen behaves against popular APIs and internal systems.
-          </p>
-        </header>
-
-        <div class="case-list">
-
-          <article class="case-card">
-            <h3>ChatGPT API – breaking the magic box</h3>
+      <!-- Security / Privacy -->
+      <section id="security" class="section section-accent">
+        <div class="container security-grid">
+          <div>
+            <header class="section-header">
+              <h2>
+                Security & privacy first. Not as a feature – as a constraint.
+              </h2>
+            </header>
+            <ul class="checklist">
+              <li>
+                <span>🔒</span><strong>No accounts.</strong> Install and use. No
+                sign-up, no onboarding flow, no user database.
+              </li>
+              <li>
+                <span>🕵️‍♂️</span><strong>No tracking.</strong> No analytics, no
+                telemetry, no “usage metrics”. We don’t need your API data to
+                improve the product.
+              </li>
+              <li>
+                <span>🗑</span><strong>No logging.</strong> Requests and
+                responses stay on your machine. Rentgen doesn’t upload or store
+                them anywhere.
+              </li>
+              <li>
+                <span>🏢</span
+                ><strong>Safe for regulated environments.</strong> Works
+                completely offline – ideal for banking, government, defence and
+                internal APIs.
+              </li>
+            </ul>
+          </div>
+          <div class="security-card">
+            <h3>Use Rentgen where cloud tools are forbidden.</h3>
             <p>
-              We pointed Rentgen at ChatGPT’s API and found issues we
-              genuinely didn’t expect to see in production. The best part?
-              They were fixed immediately after we reported them.
+              If your security team blocks Postman sync, forbids SaaS API tools
+              or bans external AI, Rentgen still works. Everything runs locally
+              – security officers can read the code and sleep at night.
             </p>
-
-            <a href="https://www.linkedin.com/pulse/i-tested-chatgpts-backend-api-using-rentgen-found-more-jankauskas-ixsnf"
-              class="case-link" target="_blank" rel="noopener noreferrer">
-              Read the case study on LinkedIn →
-            </a>
-          </article>
-
-          <article class="case-card">
-            <h3>Amazon API Case Study – 16/100 certificate score in 2 minutes</h3>
-            <p>
-              We tested a simple Amazon child profile update endpoint using Rentgen.
-              In under two minutes, structural inconsistencies surfaced: incorrect
-              status codes, HTML returned from a JSON API, and late payload rejection.
-              Not a security audit — just automated contract analysis.
-            </p>
-
-            <a href="./api-stories/amazon-profile-update-api-testing-case-study.html"
-              class="case-link">
-              Read the case study on Rentgen.io →
-            </a>
-          </article>
-
-          <article class="case-card">
-            <h3>Proton Pass API – structural signals under Rentgen testing</h3>
-            <p>
-              We tested a real Proton Pass shared-vault request with Rentgen and examined
-              how the API behaves under oversized payloads, missing authentication,
-              and protocol-level edge cases.
-              No internal knowledge — just a real request and observable signals.
-            </p>
-
-            <a href="./api-stories/protonpass-api-under-rentgen.html" class="case-link">
-              Read the case study on Rentgen.io →
-            </a>
-          </article>
-
-
-          <article class="case-card">
-            <h3>Jira API – what a real request reveals under Rentgen testing</h3>
-            <p>
-              We tested a real Jira ticket creation request with Rentgen and looked
-              at how the API behaves under invalid input, edge cases, and load.
-              No mocks, no assumptions — just a real request and real findings.
-            </p>
-
-            <a href="./api-stories/jira-api-testing-with-rentgen.html" class="case-link">
-              Read the case study on Rentgen.io →
-            </a>
-          </article>
-
-          <article class="case-card">
-            <h3>Revolut Wallet-Transfer API — RENTGEN Finds Cracks in 2 Minutes</h3>
-            <p>
-              Revolut is one of the most polished fintech apps in the world — but even top-tier products have blind
-              spots.
-              RENTGEN scanned a real wallet-transfer request and surfaced multiple issues in under two minutes:
-              incorrect method handling, weak input validation, missing headers, and payload cases that crash the
-              backend with 500 errors.
-            </p>
-
-            <a href="https://www.linkedin.com/pulse/i-pointed-rentgen-revoluts-wallet-transfer-api-what-liudas-jankauskas-oppqf"
-              class="case-link" target="_blank" rel="noopener noreferrer">
-              Read the case study on LinkedIn →
-            </a>
-          </article>
-
-          <article class="case-card">
-            <h3>
-              Even when you know nothing about the API, you can still see
-              through it
-            </h3>
-            <p>
-              When you test APIs, you often start from scratch, no docs, no
-              setup, no context. So I wanted to see what would happen if I
-              tested Trello’s API with RENTGEN, a tool that auto-generates
-              hundreds of tests from a single cURL request.
-            </p>
-
-            <a href="https://www.linkedin.com/pulse/even-when-you-know-nothing-api-can-still-see-through-jankauskas-kpkzf"
-              class="case-link" target="_blank" rel="noopener noreferrer">
-              Read the case study on LinkedIn →
-            </a>
-          </article>
-
-          <article class="case-card">
-            <h3>Azure DevOps API Breaks in 2 Minutes — RENTGEN Case Study</h3>
-            <p>
-              A quick, structured case study showing how RENTGEN uncovered
-              multiple issues in the Azure DevOps API — from incorrect
-              security behavior to broken validation and misconfigured CORS —
-              in under two minutes of testing.
-            </p>
-
-            <a href="https://www.linkedin.com/pulse/testing-azure-devops-api-rentgen-liudas-jankauskas-gks3f/"
-              class="case-link" target="_blank" rel="noopener noreferrer">
-              Read the case study on LinkedIn →
-            </a>
-          </article>
-
-          <article class="case-card">
-            <h3>
-              Stripe’s “Perfect” API — RENTGEN Broke It in Under 2 Minutes
-            </h3>
-            <p>
-              A quick case study showing how RENTGEN evaluated Stripe’s “gold
-              standard” API. Even with its strong reputation, the scan
-              revealed outdated request formats, incorrect method handling,
-              missing security headers, and weak data validation — all
-              discovered in under two minutes.
-            </p>
-
-            <a href="https://www.linkedin.com/pulse/said-stripes-api-perfect-i-gave-2-minutes-liudas-jankauskas-brkuf"
-              class="case-link" target="_blank" rel="noopener noreferrer">
-              Read the case study on LinkedIn →
-            </a>
-          </article>
-
-          <article class="case-card case-card-placeholder">
-            <h3>Next case study coming soon</h3>
-            <p>
-              We’re continuously testing Rentgen against real-world APIs:
-              banking, marketing platforms, internal tools. New write-ups will
-              appear here as they’re ready.
-            </p>
-          </article>
-
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- GitHub / Open source -->
-    <section id="github" class="section">
-      <div class="container github-grid">
-        <div>
+      <!-- Downloads -->
+      <section id="downloads" class="section">
+        <div class="container">
           <header class="section-header">
-            <h2>Open source core. Transparent by design.</h2>
+            <h2>Download Rentgen</h2>
+            <p>
+              Native desktop builds for your OS. No installers that phone home –
+              just the app.
+            </p>
           </header>
-          <p>
-            Rentgen’s core is open – so your security team, developers and QA
-            engineers can review exactly how requests are generated and what
-            leaves your machine. No hidden agents, no mystery binaries.
+
+          <div class="grid download-grid">
+            <div class="download-card">
+              <h3>macOS</h3>
+
+              <a
+                href="https://github.com/Rentgen-io/Rentgen/releases/"
+                class="btn btn-primary"
+                >Download for macOS</a
+              >
+              <p class="download-meta">Apple Silicon & Intel · .dmg / .zip</p>
+            </div>
+            <div class="download-card">
+              <h3>Windows</h3>
+              <a
+                href="https://github.com/Rentgen-io/Rentgen/releases/"
+                class="btn btn-primary"
+                >Download for Windows</a
+              >
+              <p class="download-meta">Windows 10+ · .exe / .zip</p>
+            </div>
+            <div class="download-card">
+              <h3>Linux</h3>
+              <a
+                href="https://github.com/Rentgen-io/Rentgen/releases/"
+                class="btn btn-primary"
+                >Download for Linux</a
+              >
+              <p class="download-meta">AppImage / tar.gz</p>
+            </div>
+          </div>
+
+          <p class="downloads-footnote">
+            All binaries are built from the open GitHub repository. Verify
+            signatures, diff releases, and review the code anytime.
           </p>
-          <a href="https://github.com/Rentgen-io/Rentgen" class="btn btn-ghost">Open Rentgen on GitHub</a>
         </div>
-        <div class="github-meta">
-          <ul>
-            <li>✅ API hygiene scanner focused on input validation</li>
-            <li>✅ Generates tests from a single cURL</li>
-            <li>✅ Built by a QA lead, not just another “dev toy”</li>
-            <li>✅ Designed for teams that actually care about quality</li>
-          </ul>
+      </section>
+
+      <!-- Case studies -->
+      <section id="cases" class="section section-alt">
+        <div class="container">
+          <header class="section-header">
+            <h2>Case studies & API stories</h2>
+            <p>
+              Real APIs. Real bugs. Real fixes. We’re gradually publishing how
+              Rentgen behaves against popular APIs and internal systems.
+            </p>
+          </header>
+
+          <div class="case-list">
+            <article class="case-card">
+              <h3>ChatGPT API – breaking the magic box</h3>
+              <p>
+                We pointed Rentgen at ChatGPT’s API and found issues we
+                genuinely didn’t expect to see in production. The best part?
+                They were fixed immediately after we reported them.
+              </p>
+
+              <a
+                href="https://www.linkedin.com/pulse/i-tested-chatgpts-backend-api-using-rentgen-found-more-jankauskas-ixsnf"
+                class="case-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Read the case study on LinkedIn →
+              </a>
+            </article>
+
+            <article class="case-card">
+              <h3>
+                Amazon API Case Study – 16/100 certificate score in 2 minutes
+              </h3>
+              <p>
+                We tested a simple Amazon child profile update endpoint using
+                Rentgen. In under two minutes, structural inconsistencies
+                surfaced: incorrect status codes, HTML returned from a JSON API,
+                and late payload rejection. Not a security audit — just
+                automated contract analysis.
+              </p>
+
+              <a
+                href="./api-stories/amazon-profile-update-api-testing-case-study.html"
+                class="case-link"
+              >
+                Read the case study on Rentgen.io →
+              </a>
+            </article>
+
+            <article class="case-card">
+              <h3>
+                Proton Pass API – structural signals under Rentgen testing
+              </h3>
+              <p>
+                We tested a real Proton Pass shared-vault request with Rentgen
+                and examined how the API behaves under oversized payloads,
+                missing authentication, and protocol-level edge cases. No
+                internal knowledge — just a real request and observable signals.
+              </p>
+
+              <a
+                href="./api-stories/protonpass-api-under-rentgen.html"
+                class="case-link"
+              >
+                Read the case study on Rentgen.io →
+              </a>
+            </article>
+
+            <article class="case-card">
+              <h3>
+                Jira API – what a real request reveals under Rentgen testing
+              </h3>
+              <p>
+                We tested a real Jira ticket creation request with Rentgen and
+                looked at how the API behaves under invalid input, edge cases,
+                and load. No mocks, no assumptions — just a real request and
+                real findings.
+              </p>
+
+              <a
+                href="./api-stories/jira-api-testing-with-rentgen.html"
+                class="case-link"
+              >
+                Read the case study on Rentgen.io →
+              </a>
+            </article>
+
+            <article class="case-card">
+              <h3>
+                Revolut Wallet-Transfer API — RENTGEN Finds Cracks in 2 Minutes
+              </h3>
+              <p>
+                Revolut is one of the most polished fintech apps in the world —
+                but even top-tier products have blind spots. RENTGEN scanned a
+                real wallet-transfer request and surfaced multiple issues in
+                under two minutes: incorrect method handling, weak input
+                validation, missing headers, and payload cases that crash the
+                backend with 500 errors.
+              </p>
+
+              <a
+                href="https://www.linkedin.com/pulse/i-pointed-rentgen-revoluts-wallet-transfer-api-what-liudas-jankauskas-oppqf"
+                class="case-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Read the case study on LinkedIn →
+              </a>
+            </article>
+
+            <article class="case-card">
+              <h3>
+                Even when you know nothing about the API, you can still see
+                through it
+              </h3>
+              <p>
+                When you test APIs, you often start from scratch, no docs, no
+                setup, no context. So I wanted to see what would happen if I
+                tested Trello’s API with RENTGEN, a tool that auto-generates
+                hundreds of tests from a single cURL request.
+              </p>
+
+              <a
+                href="https://www.linkedin.com/pulse/even-when-you-know-nothing-api-can-still-see-through-jankauskas-kpkzf"
+                class="case-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Read the case study on LinkedIn →
+              </a>
+            </article>
+
+            <article class="case-card">
+              <h3>Azure DevOps API Breaks in 2 Minutes — RENTGEN Case Study</h3>
+              <p>
+                A quick, structured case study showing how RENTGEN uncovered
+                multiple issues in the Azure DevOps API — from incorrect
+                security behavior to broken validation and misconfigured CORS —
+                in under two minutes of testing.
+              </p>
+
+              <a
+                href="https://www.linkedin.com/pulse/testing-azure-devops-api-rentgen-liudas-jankauskas-gks3f/"
+                class="case-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Read the case study on LinkedIn →
+              </a>
+            </article>
+
+            <article class="case-card">
+              <h3>
+                Stripe’s “Perfect” API — RENTGEN Broke It in Under 2 Minutes
+              </h3>
+              <p>
+                A quick case study showing how RENTGEN evaluated Stripe’s “gold
+                standard” API. Even with its strong reputation, the scan
+                revealed outdated request formats, incorrect method handling,
+                missing security headers, and weak data validation — all
+                discovered in under two minutes.
+              </p>
+
+              <a
+                href="https://www.linkedin.com/pulse/said-stripes-api-perfect-i-gave-2-minutes-liudas-jankauskas-brkuf"
+                class="case-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Read the case study on LinkedIn →
+              </a>
+            </article>
+
+            <article class="case-card case-card-placeholder">
+              <h3>Next case study coming soon</h3>
+              <p>
+                We’re continuously testing Rentgen against real-world APIs:
+                banking, marketing platforms, internal tools. New write-ups will
+                appear here as they’re ready.
+              </p>
+            </article>
+          </div>
         </div>
+      </section>
+
+      <!-- GitHub / Open source -->
+      <section id="github" class="section">
+        <div class="container github-grid">
+          <div>
+            <header class="section-header">
+              <h2>Open source core. Transparent by design.</h2>
+            </header>
+            <p>
+              Rentgen’s core is open – so your security team, developers and QA
+              engineers can review exactly how requests are generated and what
+              leaves your machine. No hidden agents, no mystery binaries.
+            </p>
+            <a
+              href="https://github.com/Rentgen-io/Rentgen"
+              class="btn btn-ghost"
+              >Open Rentgen on GitHub</a
+            >
+          </div>
+          <div class="github-meta">
+            <ul>
+              <li>✅ API hygiene scanner focused on input validation</li>
+              <li>✅ Generates tests from a single cURL</li>
+              <li>✅ Built by a QA lead, not just another “dev toy”</li>
+              <li>✅ Designed for teams that actually care about quality</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section class="atlas-promo" aria-labelledby="atlas-promo-title">
+        <div class="container atlas-promo-inner">
+          <div>
+            <h2 id="atlas-promo-title">
+              Exploring the REST API testing landscape?
+            </h2>
+            <p>
+              Browse and compare tools by category, capabilities, pricing, and
+              sources.
+            </p>
+          </div>
+          <a
+            href="https://restatlas.org/"
+            class="btn btn-ghost"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Explore REST Atlas</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span>© <span id="year"></span> Rentgen. All rights reserved.</span>
+        <span class="footer-note">Built for testers, by a tester.</span>
       </div>
-    </section>
-    <section class="atlas-promo" aria-labelledby="atlas-promo-title">
-      <div class="container atlas-promo-inner">
-        <div>
-          <h2 id="atlas-promo-title">Exploring the REST API testing landscape?</h2>
-          <p>Browse and compare tools by category, capabilities, pricing, and sources.</p>
-        </div>
-        <a href="https://restatlas.org/" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">Explore REST Atlas</a>
-      </div>
-    </section>
+    </footer>
 
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <span>© <span id="year"></span> Rentgen. All rights reserved.</span>
-      <span class="footer-note">Built for testers, by a tester.</span>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
-</body>
-
+    <script src="script.js"></script>
+  </body>
 </html>
