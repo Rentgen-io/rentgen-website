@@ -60,24 +60,52 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const demoGif = document.getElementById("demoGif");
 const gifModal = document.getElementById("gifModal");
-const gifModalImage = document.getElementById("gifModalImage");
+const demoVideo = document.getElementById("demoVideo");
 const gifClose = document.querySelector(".gif-close");
 
-if (demoGif && gifModal) {
+if (demoGif && gifModal && demoVideo && gifClose) {
   demoGif.style.cursor = "pointer";
+  let previousOverflow;
 
-  demoGif.addEventListener("click", () => {
+  const openDemo = () => {
+    previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
     gifModal.style.display = "block";
-    gifModalImage.src = demoGif.src;
-  });
+    gifModal.setAttribute("aria-hidden", "false");
+    demoVideo.currentTime = 0;
+    demoVideo.play().catch(() => {
+      // Native controls remain available if automatic playback is blocked.
+    });
+    gifClose.focus();
+  };
 
-  gifClose.addEventListener("click", () => {
+  const closeDemo = () => {
+    demoVideo.pause();
+    demoVideo.currentTime = 0;
     gifModal.style.display = "none";
+    gifModal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = previousOverflow;
+    demoGif.focus();
+  };
+
+  demoGif.addEventListener("click", openDemo);
+  demoGif.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      openDemo();
+    }
   });
+  gifClose.addEventListener("click", closeDemo);
 
   gifModal.addEventListener("click", (e) => {
-    if (e.target === gifModal) {
-      gifModal.style.display = "none";
+    if (e.target === gifModal) closeDemo();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (gifModal.getAttribute("aria-hidden") === "true") return;
+    if (e.key === "Escape") closeDemo();
+    if (e.key === "Tab") {
+      e.preventDefault();
+      (document.activeElement === gifClose ? demoVideo : gifClose).focus();
     }
   });
 }

@@ -129,15 +129,22 @@
                   src="assets/rentgen-demo.gif"
                   alt="Rentgen demo"
                   id="demoGif"
+                  role="button"
+                  tabindex="0"
+                  aria-label="Play Rentgen demo video"
+                  aria-haspopup="dialog"
+                  aria-controls="gifModal"
                 />
               </div>
             </div>
           </aside>
 
           <!-- FULLSCREEN MODAL – DEDAM PO HERO, NE VIDUJ media-frame -->
-          <div id="gifModal" class="gif-modal">
-            <span class="gif-close">&times;</span>
-            <img class="gif-modal-content" id="gifModalImage" />
+          <div id="gifModal" class="gif-modal" role="dialog" aria-modal="true" aria-label="Rentgen demo video" aria-hidden="true">
+            <button type="button" class="gif-close" aria-label="Close demo video">&times;</button>
+            <video class="gif-modal-content" id="demoVideo" src="assets/demo.mov" controls playsinline preload="none">
+              Your browser does not support this video. <a href="assets/demo.mov">Download the demo</a>.
+            </video>
           </div>
         </div>
       </section>

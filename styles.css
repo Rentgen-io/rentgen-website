@@ -400,7 +400,7 @@ body {
   transform: scale(1.01);
 }
 
-/* FULLSCREEN GIF MODAL (iškeltas iš media queries) */
+/* Fullscreen demo video modal */
 
 .gif-modal {
   display: none;
@@ -438,6 +438,8 @@ body {
 }
 
 .gif-close {
+  background: transparent;
+  border: 0;
   position: fixed;
   top: 20px;
   right: 35px;
@@ -1296,4 +1298,3 @@ body {
         position: static;
       }
     }
-  
