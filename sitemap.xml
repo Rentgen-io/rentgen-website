@@ -121,6 +121,9 @@
     <loc>https://rentgen.io/api-stories/reflected-payload-safety.html</loc>
   </url>
   <url>
+    <loc>https://rentgen.io/api-stories/regression-out-of-the-box.html</loc>
+  </url>
+  <url>
     <loc>https://rentgen.io/api-stories/rentgen-not-a-postman-replacement.html</loc>
   </url>
   <url>

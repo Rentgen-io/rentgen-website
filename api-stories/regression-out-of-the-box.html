@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>
+      Regression Out of the Box: Finding API Bugs with Zero Tests – Rentgen
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta
+      name="description"
+      content="Compare API behavior across environments from one working cURL request. Rentgen filters expected differences and highlights potential regressions without a predefined test suite."
+    />
+    <link
+      rel="canonical"
+      href="https://rentgen.io/api-stories/regression-out-of-the-box.html"
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+    <link rel="icon" type="image/png" href="../assets/rentgen-logo.png" />
+    <link rel="apple-touch-icon" href="../assets/rentgen-logo.png" />
+
+    <!-- Open Graph / Social -->
+    <meta
+      property="og:title"
+      content="Regression Out of the Box: Finding API Bugs with Zero Tests – Rentgen"
+    />
+    <meta
+      property="og:description"
+      content="Compare API behavior across environments from one working cURL request. Rentgen filters expected differences and highlights potential regressions without a predefined test suite."
+    />
+    <meta
+      property="og:image"
+      content="https://rentgen.io/assets/og-image.png"
+    />
+    <meta
+      property="og:url"
+      content="https://rentgen.io/api-stories/regression-out-of-the-box.html"
+    />
+    <meta property="og:type" content="article" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Regression Out of the Box: Finding API Bugs with Zero Tests – Rentgen"
+    />
+    <meta
+      name="twitter:description"
+      content="Compare API behavior across environments from one working cURL request. Rentgen filters expected differences and highlights potential regressions without a predefined test suite."
+    />
+    <meta
+      name="twitter:image"
+      content="https://rentgen.io/assets/og-image.png"
+    />
+
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="https://rentgen.io/#top" class="brand">
+          <img
+            src="../assets/rentgen-logo.png"
+            class="brand-logo"
+            alt="Rentgen logo"
+          />
+          <span class="brand-name">Rentgen</span>
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span></span><span></span>
+        </button>
+        <nav class="site-nav">
+          <a href="https://rentgen.io/#features">Features</a>
+          <a href="https://rentgen.io/#security">Security</a>
+          <a href="https://rentgen.io/#downloads">Downloads</a>
+          <a href="https://rentgen.io/#cases">Case studies</a>
+          <a href="https://rentgen.io/#github">GitHub</a>
+          <a href="https://rentgen.io/api-stories/">API Stories</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="section">
+      <article class="container article">
+        <header class="article-header">
+          <h1>
+            Regression out of the box: finding API bugs when you have zero tests
+          </h1>
+          <p class="article-meta">Rentgen · API Stories</p>
+        </header>
+        <div class="article-content">
+          <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/OGJojyiA32s?si=jQY-ssl7JgxbB7Wr"
+            title="Regression out of the box: comparing API environments in Rentgen"
+            style="display: block; width: 100%; height: auto; aspect-ratio: 16 / 9;"
+            frameborder="0"
+            allow="
+              accelerometer;
+              autoplay;
+              clipboard-write;
+              encrypted-media;
+              gyroscope;
+              picture-in-picture;
+              web-share;
+            "
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+          <p>
+            “Regression testing without tests” sounds like a contradiction.
+            Usually, regression testing starts with a suite of checks somebody
+            has already written and a set of expectations somebody has already
+            defined. But what if you have neither, and you still need to know
+            whether the API in TEST behaves like the one in PROD?
+          </p>
+
+          <p>
+            This is what we call regression out of the box. Rentgen takes one
+            working request, generates tests from it, and lets you compare the
+            results across environments. You do not need an OpenAPI file, a
+            collection of assertion scripts, or a configured CI pipeline to get
+            started. The first useful input is a real cURL request that you
+            already know works.
+          </p>
+
+          <h2>Start with a working request</h2>
+          <p>
+            Import your cURL into Rentgen and send it to the environment you
+            want to use as a baseline. That might be the current production
+            version, for example. Check that the request succeeds and returns
+            the response you expect before generating tests around it.
+          </p>
+
+          <figure>
+            <img
+              width="100%"
+              src="../assets/api-stories/Importing and sending the working cURL request.jpg"
+              alt="Working cURL request imported and sent in Rentgen"
+            />
+            <figcaption>
+              Importing and sending the working cURL request.
+            </figcaption>
+          </figure>
+
+          <p>
+            Next, map the fields. Tell Rentgen what each field represents: an
+            ID, a timestamp, a numeric value, an enum, or a value that is
+            expected to change. This gives the engine context it cannot get from
+            a response alone. A different ID between environments may be
+            perfectly normal; a field that unexpectedly changes type deserves a
+            closer look.
+          </p>
+
+          <figure>
+            <img
+              width="100%"
+              src="../assets/api-stories/Field mapping before Generate and Run.jpg"
+              alt="Mapping API fields before generating and running tests"
+            />
+            <figcaption>Field mapping before Generate and Run.</figcaption>
+          </figure>
+
+          <p>
+            Once the fields are mapped, press <strong>Generate and Run</strong>.
+            Rentgen generates structured tests from the request, mutates inputs,
+            checks structural consistency, validates error handling, and
+            evaluates response behavior. Depending on the request, that can mean
+            dozens or hundreds of checks without writing each test case
+            manually.
+          </p>
+
+          <h2>Run the same request in another environment</h2>
+          <p>
+            When the first run finishes, press
+            <strong>Select for Compare</strong>. That run becomes the baseline
+            for your comparison. Then switch environments, for example from PROD
+            to TEST, and send the same request to the corresponding endpoint.
+          </p>
+
+          <figure>
+            <img
+              width="100%"
+              src="../assets/api-stories/Switching from PROD to TEST with a baseline selected.jpg"
+              alt="Switching from PROD to TEST with the baseline run selected"
+            />
+            <figcaption>
+              Switching from PROD to TEST with a baseline selected
+            </figcaption>
+          </figure>
+
+          <p>
+            Map the fields again for the second environment, since its data and
+            returned values may differ, then press
+            <strong>Generate and Run</strong> once more. After that run
+            completes, click <strong>Compare with Selected</strong>. You now
+            have a comparison of how the API behaved under generated tests in
+            both environments, rather than just two successful responses to the
+            original request.
+          </p>
+
+          <h2>A useful comparison needs to understand noise</h2>
+          <p>
+            Two environments rarely return identical data. IDs, timestamps, and
+            other dynamic values can differ even when both implementations
+            behave correctly. A raw JSON diff will show those differences, but
+            it leaves you to work out which ones matter. That becomes tiring
+            quickly when you are looking through the results of many generated
+            checks.
+          </p>
+
+          <p>
+            Rentgen uses the field context to filter expected variation and
+            surface potential issues. If the tested behavior is consistent, you
+            get a clean green comparison result. That means the comparison found
+            no relevant drift in these runs; it does not mean every possible
+            behavior of the API has been tested.
+          </p>
+
+          <figure>
+            <img
+              width="100%"
+              src="../assets/api-stories/A clean green comparison result.jpg"
+              alt="Rentgen comparison showing no relevant drift between runs"
+            />
+            <figcaption>A clean green comparison result</figcaption>
+          </figure>
+
+          <p>
+            When a meaningful difference appears, Rentgen highlights what
+            changed, where it changed, and why it might be a bug. Imagine
+            invalid input producing a controlled validation error in PROD but a
+            server error in TEST. That is a change in error handling worth
+            investigating. A fresh timestamp in an otherwise consistent response
+            is a different kind of change, and should not demand the same
+            attention.
+          </p>
+
+          <figure>
+            <img
+              width="100%"
+              src="../assets/api-stories/Comparison highlighting a potential regression.jpg"
+              alt="Rentgen comparison highlighting a potential API regression"
+            />
+            <figcaption>
+              Comparison highlighting a potential regression
+            </figcaption>
+          </figure>
+
+          <p>
+            The distinction matters: a difference is evidence to investigate,
+            and an intentional change may be entirely correct. Rentgen helps you
+            focus that investigation by separating likely regressions from
+            routine variation. If you want the complete picture, you can enable
+            the toggle that shows all differences, including raw structural
+            changes. The filtered view keeps the initial review manageable,
+            while the full drift remains available.
+          </p>
+
+          <h2>Useful before you have a regression suite</h2>
+          <p>
+            This workflow is especially useful early in a project, during a
+            migration, or when checking a new deployment against an existing
+            environment. At those points, you may not yet have a maintained test
+            suite or enough documented expectations to write one confidently.
+            You still need to know whether validation changed, response
+            structures drifted, or error handling degraded.
+          </p>
+
+          <p>
+            The baseline gives you a concrete behavior to compare against
+            without requiring you to define every expected result in advance. It
+            is worth remembering that an existing environment can have bugs too:
+            consistent behavior can still be wrong. The comparison answers
+            whether the tested behavior differs between the runs, and helps
+            identify differences that deserve attention.
+          </p>
+
+          <p>
+            This is a practical example of
+            <a href="./automation-before-automation.html"
+              >Automation Before Automation</a
+            >. You use automated checks to understand the API before investing
+            in formal regression coverage. The findings can then guide the
+            assertions you write and maintain in your test suite, alongside your
+            existing Postman, Playwright, or CI workflow.
+          </p>
+
+          <p>
+            You can start investigating API regressions with one real request,
+            field mappings, and two runs. You do not have to wait until a
+            framework is configured or a collection of tests is ready. That is
+            regression out of the box: a way to find meaningful changes between
+            environments while your written test count is still zero.
+          </p>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span>© <span id="year"></span> Rentgen</span>
+        <span class="footer-note">Built for testers, by a tester.</span>
+      </div>
+    </footer>
+
+    <script src="../script.js"></script>
+  </body>
+</html>
