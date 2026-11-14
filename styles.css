@@ -1298,3 +1298,38 @@ body {
         position: static;
       }
     }
+
+/* Homepage workflow demos */
+.workflow-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 3rem;
+  align-items: center;
+}
+.workflow-copy h2 { margin: 0 0 1rem; font-size: clamp(1.8rem, 3vw, 2.4rem); line-height: 1.2; }
+.workflow-copy p { line-height: 1.75; }
+.workflow-copy .workflow-intro { font-size: 1.15rem; color: var(--fg); }
+.workflow-media .media-frame { max-width: none; }
+.workflow-preview {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 16px;
+  background: #0f172a;
+  color: var(--fg);
+  font: inherit;
+  cursor: pointer;
+}
+.workflow-preview img { display: block; width: 100%; height: auto; }
+.preview-play { display: block; padding: 0.8rem 1rem; background: rgba(2, 6, 23, 0.9); font-size: 0.9rem; }
+.workflow-preview:hover .preview-play { color: var(--accent); }
+.workflow-preview:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.supporting-features { max-width: 850px; }
+.supporting-features p { line-height: 1.75; color: var(--fg-muted); margin-bottom: 1.5rem; }
+@media (max-width: 900px) {
+  .workflow-row { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+  .hero-media { order: 0; }
+}

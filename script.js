@@ -58,16 +58,22 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-const demoGif = document.getElementById("demoGif");
+const demoTriggers = document.querySelectorAll("[data-demo-src]");
 const gifModal = document.getElementById("gifModal");
 const demoVideo = document.getElementById("demoVideo");
 const gifClose = document.querySelector(".gif-close");
 
-if (demoGif && gifModal && demoVideo && gifClose) {
-  demoGif.style.cursor = "pointer";
+if (demoTriggers.length && gifModal && demoVideo && gifClose) {
   let previousOverflow;
+  let activeTrigger;
 
-  const openDemo = () => {
+  const openDemo = (trigger) => {
+    activeTrigger = trigger;
+    demoVideo.src = trigger.dataset.demoSrc;
+    gifModal.setAttribute("aria-label", trigger.dataset.demoTitle);
+    demoVideo.setAttribute("aria-label", trigger.dataset.demoTitle);
+    const downloadLink = demoVideo.querySelector("a");
+    if (downloadLink) downloadLink.href = trigger.dataset.demoSrc;
     previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     gifModal.style.display = "block";
@@ -85,14 +91,18 @@ if (demoGif && gifModal && demoVideo && gifClose) {
     gifModal.style.display = "none";
     gifModal.setAttribute("aria-hidden", "true");
     document.body.style.overflow = previousOverflow;
-    demoGif.focus();
+    activeTrigger?.focus();
   };
 
-  demoGif.addEventListener("click", openDemo);
-  demoGif.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      openDemo();
+  demoTriggers.forEach((trigger) => {
+    trigger.addEventListener("click", () => openDemo(trigger));
+    if (trigger.tagName !== "BUTTON") {
+      trigger.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openDemo(trigger);
+        }
+      });
     }
   });
   gifClose.addEventListener("click", closeDemo);

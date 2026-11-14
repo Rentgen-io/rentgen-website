@@ -1,147 +1,213 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>HSTS Header Testing for APIs – Rentgen</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Learn what Strict-Transport-Security does, how Rentgen checks the HSTS response header, and why a missing header is reported as a warning." />
-  <link rel="canonical" href="https://rentgen.io/api-stories/hsts-strict-transport-security.html" />
+  <head>
+    <meta charset="UTF-8" />
+    <title>HSTS Header Testing for APIs – Rentgen</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Learn what Strict-Transport-Security does, how Rentgen checks the HSTS response header, and why a missing header is reported as a warning."
+    />
+    <link
+      rel="canonical"
+      href="https://rentgen.io/api-stories/hsts-strict-transport-security.html"
+    />
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
-  <link rel="icon" type="image/png" href="../assets/rentgen-logo.png" />
-  <link rel="apple-touch-icon" href="../assets/rentgen-logo.png" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+    <link rel="icon" type="image/png" href="../assets/rentgen-logo.png" />
+    <link rel="apple-touch-icon" href="../assets/rentgen-logo.png" />
 
-  <!-- Open Graph / Social -->
-  <meta property="og:title" content="HSTS Header Testing for APIs – Rentgen" />
-  <meta property="og:description" content="Learn what Strict-Transport-Security does, how Rentgen checks the HSTS response header, and why a missing header is reported as a warning." />
-  <meta property="og:image" content="https://rentgen.io/assets/og-image.png" />
-  <meta property="og:url" content="https://rentgen.io/api-stories/hsts-strict-transport-security.html" />
-  <meta property="og:type" content="article" />
+    <!-- Open Graph / Social -->
+    <meta
+      property="og:title"
+      content="HSTS Header Testing for APIs – Rentgen"
+    />
+    <meta
+      property="og:description"
+      content="Learn what Strict-Transport-Security does, how Rentgen checks the HSTS response header, and why a missing header is reported as a warning."
+    />
+    <meta
+      property="og:image"
+      content="https://rentgen.io/assets/og-image.png"
+    />
+    <meta
+      property="og:url"
+      content="https://rentgen.io/api-stories/hsts-strict-transport-security.html"
+    />
+    <meta property="og:type" content="article" />
 
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="HSTS Header Testing for APIs – Rentgen" />
-  <meta name="twitter:description" content="Learn what Strict-Transport-Security does, how Rentgen checks the HSTS response header, and why a missing header is reported as a warning." />
-  <meta name="twitter:image" content="https://rentgen.io/assets/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="HSTS Header Testing for APIs – Rentgen"
+    />
+    <meta
+      name="twitter:description"
+      content="Learn what Strict-Transport-Security does, how Rentgen checks the HSTS response header, and why a missing header is reported as a warning."
+    />
+    <meta
+      name="twitter:image"
+      content="https://rentgen.io/assets/og-image.png"
+    />
 
-  <link rel="stylesheet" href="../styles.css" />
-</head>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
 
-<body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="https://rentgen.io/#top" class="brand">
-        <img src="../assets/rentgen-logo.png" class="brand-logo" />
-        <span class="brand-name">Rentgen</span>
-      </a>
-      <button class="nav-toggle" aria-label="Toggle navigation">
-        <span></span><span></span>
-      </button>
-      <nav class="site-nav">
-        <a href="https://rentgen.io/#features">Features</a>
-        <a href="https://rentgen.io/#security">Security</a>
-        <a href="https://rentgen.io/#downloads">Downloads</a>
-        <a href="https://rentgen.io/#cases">Case studies</a>
-        <a href="https://rentgen.io/#github">GitHub</a>
-        <a href="https://rentgen.io/api-stories/">API Stories</a>
-      </nav>
-    </div>
-  </header>
-
-  <main class="section">
-
-    <article class="container article">
-      <header class="article-header">
-        <h1>HSTS (Strict-Transport-Security) — the header that prevents silent HTTP downgrade</h1>
-        <p class="article-meta">
-          Rentgen API Stories · December 2025
-        </p>
-      </header>
-
-      <div class="article-content">
-        <p>
-          HTTPS is everywhere… until it isn’t.
-          Most APIs “work fine” without HSTS — which is exactly why teams forget it.
-          Rentgen flags it as a warning because nothing crashes,
-          but the security posture quietly gets weaker.
-        </p>
-
-        <h2>What was tested</h2>
-        <p>
-          A simple response-header check on HTTPS endpoints:
-          does the API return <strong>Strict-Transport-Security</strong>?
-          If the header is missing, Rentgen marks it as a <strong>🟠 Warning</strong>.
-        </p>
-
-        <figure>
-          <img width=100% src="../assets/api-stories/hsts-header.png" alt="HSTS Strict-Transport-Security header check" />
-          <figcaption>Rentgen checking for Strict-Transport-Security on HTTPS endpoints</figcaption>
-        </figure>
-
-        <h2>What Rentgen found</h2>
-        <ul>
-          <li><strong>HSTS header missing</strong> on HTTPS responses</li>
-          <li>Result: <strong>🟠 Warning</strong> (not a fail — the API still works)</li>
-          <li>Risk: clients may still accept <strong>HTTP</strong> on first contact or in downgrade scenarios</li>
-        </ul>
-
-        <h2>Why this matters</h2>
-        <p>
-          HSTS tells clients (especially browsers) one thing:
-          <em>“Always use HTTPS for this host. Never downgrade to HTTP.”</em>
-          Without it, HTTPS is negotiated rather than enforced, which leaves a window for downgrade attacks
-          (for example, SSL stripping) when someone is on an untrusted network or behind a misbehaving proxy.
-        </p>
-
-        <p>
-          OWASP commonly recommends HSTS as part of transport-layer protections,
-          because it reduces the chance of accidental or forced HTTP usage when HTTPS should be mandatory.
-        </p>
-
-        <h2>Why it’s a warning, not a bug</h2>
-        <p>
-          Many APIs are consumed server-to-server or by mobile apps — not by browsers.
-          In those cases, clients often already hardcode HTTPS and don’t rely on HSTS behavior,
-          so the real-world risk may be low.
-          That’s why Rentgen doesn’t fail your API for missing HSTS — it makes you decide intentionally.
-        </p>
-
-        <h2>Who should take this seriously</h2>
-        <ul>
-          <li>APIs called from <strong>web frontends</strong> (browser traffic)</li>
-          <li>Systems using <strong>cookies</strong> for auth (sessions)</li>
-          <li>Platforms sharing a domain across frontend + API + auth flows</li>
-          <li>Public-facing services behind CDNs / gateways / legacy proxies</li>
-        </ul>
-
-        <h2>When it can be ignored</h2>
-        <p>
-          If your API is truly private, strictly server-to-server, never used from browsers,
-          and your clients enforce HTTPS by design, you can treat this as informational.
-          But don’t leave it as an accident — document the decision.
-        </p>
-
-        <h2>Final thoughts</h2>
-        <p>
-          Missing HSTS won’t break anything.
-          It won’t show up in your test suite.
-          It won’t wake anyone up at night.
-          But it removes a layer that prevents silent HTTP downgrade in the environments where it matters.
-          That’s why Rentgen includes it — to turn “forgotten security” into a deliberate choice.
-        </p>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="https://rentgen.io/#top" class="brand">
+          <img src="../assets/rentgen-logo.png" class="brand-logo" />
+          <span class="brand-name">Rentgen</span>
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span></span><span></span>
+        </button>
+        <nav class="site-nav">
+          <a href="https://rentgen.io/#features">Features</a>
+          <a href="https://rentgen.io/#security">Security</a>
+          <a href="https://rentgen.io/#downloads">Downloads</a>
+          <a href="https://rentgen.io/#cases">Case studies</a>
+          <a href="https://rentgen.io/#github">GitHub</a>
+          <a href="https://rentgen.io/api-stories/">API Stories</a>
+        </nav>
       </div>
-  </article>
+    </header>
 
+    <main class="section">
+      <article class="container article">
+        <header class="article-header">
+          <h1>
+            HSTS (Strict-Transport-Security) — the header that prevents silent
+            HTTP downgrade
+          </h1>
+          <p class="article-meta">Rentgen API Stories · December 2025</p>
+        </header>
 
-  </main>
+        <div class="article-content">
+          <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/Km0bJeNa6wQ?si=6lyUO3eund_D9iH0"
+            title="YouTube video player"
+            style="display: block; width: 100%; height: auto; aspect-ratio: 16 / 9;"
+            frameborder="0"
+            allow="
+              accelerometer;
+              autoplay;
+              clipboard-write;
+              encrypted-media;
+              gyroscope;
+              picture-in-picture;
+              web-share;
+            "
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+          <p>
+            HTTPS is everywhere… until it isn’t. Most APIs “work fine” without
+            HSTS — which is exactly why teams forget it. Rentgen flags it as a
+            warning because nothing crashes, but the security posture quietly
+            gets weaker.
+          </p>
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <span>© <span id="year"></span> Rentgen</span>
-      <span class="footer-note">Built for testers, by a tester.</span>
-    </div>
-  </footer>
+          <h2>What was tested</h2>
+          <p>
+            A simple response-header check on HTTPS endpoints: does the API
+            return <strong>Strict-Transport-Security</strong>? If the header is
+            missing, Rentgen marks it as a <strong>🟠 Warning</strong>.
+          </p>
 
-  <script src="../script.js"></script>
-</body>
+          <figure>
+            <img
+              width="100%"
+              src="../assets/api-stories/hsts-header.png"
+              alt="HSTS Strict-Transport-Security header check"
+            />
+            <figcaption>
+              Rentgen checking for Strict-Transport-Security on HTTPS endpoints
+            </figcaption>
+          </figure>
+
+          <h2>What Rentgen found</h2>
+          <ul>
+            <li><strong>HSTS header missing</strong> on HTTPS responses</li>
+            <li>
+              Result: <strong>🟠 Warning</strong> (not a fail — the API still
+              works)
+            </li>
+            <li>
+              Risk: clients may still accept <strong>HTTP</strong> on first
+              contact or in downgrade scenarios
+            </li>
+          </ul>
+
+          <h2>Why this matters</h2>
+          <p>
+            HSTS tells clients (especially browsers) one thing:
+            <em>“Always use HTTPS for this host. Never downgrade to HTTP.”</em>
+            Without it, HTTPS is negotiated rather than enforced, which leaves a
+            window for downgrade attacks (for example, SSL stripping) when
+            someone is on an untrusted network or behind a misbehaving proxy.
+          </p>
+
+          <p>
+            OWASP commonly recommends HSTS as part of transport-layer
+            protections, because it reduces the chance of accidental or forced
+            HTTP usage when HTTPS should be mandatory.
+          </p>
+
+          <h2>Why it’s a warning, not a bug</h2>
+          <p>
+            Many APIs are consumed server-to-server or by mobile apps — not by
+            browsers. In those cases, clients often already hardcode HTTPS and
+            don’t rely on HSTS behavior, so the real-world risk may be low.
+            That’s why Rentgen doesn’t fail your API for missing HSTS — it makes
+            you decide intentionally.
+          </p>
+
+          <h2>Who should take this seriously</h2>
+          <ul>
+            <li>
+              APIs called from <strong>web frontends</strong> (browser traffic)
+            </li>
+            <li>Systems using <strong>cookies</strong> for auth (sessions)</li>
+            <li>
+              Platforms sharing a domain across frontend + API + auth flows
+            </li>
+            <li>
+              Public-facing services behind CDNs / gateways / legacy proxies
+            </li>
+          </ul>
+
+          <h2>When it can be ignored</h2>
+          <p>
+            If your API is truly private, strictly server-to-server, never used
+            from browsers, and your clients enforce HTTPS by design, you can
+            treat this as informational. But don’t leave it as an accident —
+            document the decision.
+          </p>
+
+          <h2>Final thoughts</h2>
+          <p>
+            Missing HSTS won’t break anything. It won’t show up in your test
+            suite. It won’t wake anyone up at night. But it removes a layer that
+            prevents silent HTTP downgrade in the environments where it matters.
+            That’s why Rentgen includes it — to turn “forgotten security” into a
+            deliberate choice.
+          </p>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span>© <span id="year"></span> Rentgen</span>
+        <span class="footer-note">Built for testers, by a tester.</span>
+      </div>
+    </footer>
+
+    <script src="../script.js"></script>
+  </body>
 </html>

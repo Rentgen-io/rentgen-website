@@ -2,11 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Rentgen – Generate API Tests from One cURL Request</title>
+    <title>
+      Rentgen – API Tests, Regression Comparison & LLM Pre-evaluation
+    </title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="One cURL in, hundreds of API tests out. Download Rentgen to generate and run checks locally, without writing scripts, creating an account, or cloud setup."
+      content="Generate API tests from one cURL, compare behavior across environments, and check LLM replies against your expectations. Runs locally. No account required."
     />
     <link rel="canonical" href="https://rentgen.io/" />
 
@@ -18,11 +20,11 @@
     <!-- Open Graph / Social -->
     <meta
       property="og:title"
-      content="Rentgen – Generate API Tests from One cURL Request"
+      content="Rentgen – API Tests, Regression Comparison & LLM Pre-evaluation"
     />
     <meta
       property="og:description"
-      content="One cURL in, hundreds of API tests out. Download Rentgen to generate and run checks locally, without writing scripts, creating an account, or cloud setup."
+      content="Generate API tests from one cURL, compare behavior across environments, and check LLM replies against your expectations. Runs locally. No account required."
     />
     <meta
       property="og:image"
@@ -34,11 +36,11 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
-      content="Rentgen – Generate API Tests from One cURL Request"
+      content="Rentgen – API Tests, Regression Comparison & LLM Pre-evaluation"
     />
     <meta
       name="twitter:description"
-      content="One cURL in, hundreds of API tests out. Download Rentgen to generate and run checks locally, without writing scripts, creating an account, or cloud setup."
+      content="Generate API tests from one cURL, compare behavior across environments, and check LLM replies against your expectations. Runs locally. No account required."
     />
     <meta
       name="twitter:image"
@@ -54,7 +56,7 @@
         "url": "https://rentgen.io/",
         "applicationCategory": "DeveloperApplication",
         "operatingSystem": "macOS, Windows, Linux",
-        "description": "One cURL in, hundreds of API tests out. Download Rentgen to generate and run checks locally, without writing scripts, creating an account, or cloud setup.",
+        "description": "Generate API tests from one cURL, compare behavior across environments, and check LLM replies against your expectations. Runs locally. No account required.",
         "downloadUrl": "https://rentgen.io/#downloads"
       }
     </script>
@@ -75,7 +77,7 @@
           <span></span><span></span>
         </button>
         <nav class="site-nav">
-          <a href="#features">Features</a>
+          <a href="#features">Use cases</a>
           <a href="#security">Security</a>
           <a href="#downloads">Downloads</a>
           <a href="#cases">Case studies</a>
@@ -87,17 +89,17 @@
     </header>
 
     <main id="top">
-      <!-- Hero -->
       <section class="hero">
         <div class="container hero-inner">
           <div class="hero-copy">
-            <p class="eyebrow">Local API testing · No test scripts required</p>
+            <p class="eyebrow">1. API testing · Start with one request</p>
             <h1>One cURL in. Hundreds of tests out.</h1>
             <p class="hero-subtitle">
               Download Rentgen, paste a working cURL request, and generate API
               tests without writing scripts. Run them locally to find validation
               failures, unexpected errors, and inconsistent responses. No
-              account. No cloud setup.
+              account. No cloud setup. You can also compare environments and
+              check LLM replies before shipping changes.
             </p>
             <div class="hero-badges">
               <span class="badge">No cloud</span>
@@ -105,9 +107,21 @@
               <span class="badge">No account</span>
             </div>
             <div class="hero-cta">
-              <a href="https://pub-355476c48cdf4c0fb7b488d2fa85c207.r2.dev/v2.0.0/Rentgen-v2.0.0-win-x64.exe" class="btn btn-primary">Download for Windows x64</a>
-              <a href="https://pub-355476c48cdf4c0fb7b488d2fa85c207.r2.dev/v2.0.0/Rentgen-v2.0.0-mac-arm64.dmg" class="btn btn-primary">Download for macOS Apple Silicon</a>
-              <a href="https://github.com/Rentgen-io/Rentgen/releases" class="btn btn-ghost">All versions on GitHub</a>
+              <a
+                href="https://pub-355476c48cdf4c0fb7b488d2fa85c207.r2.dev/v2.0.0/Rentgen-v2.0.0-win-x64.exe"
+                class="btn btn-primary"
+                >Download for Windows x64</a
+              >
+              <a
+                href="https://pub-355476c48cdf4c0fb7b488d2fa85c207.r2.dev/v2.0.0/Rentgen-v2.0.0-mac-arm64.dmg"
+                class="btn btn-primary"
+                >Download for macOS Apple Silicon</a
+              >
+              <a
+                href="https://github.com/Rentgen-io/Rentgen/releases"
+                class="btn btn-ghost"
+                >All versions on GitHub</a
+              >
               <a href="cli/" class="btn btn-ghost">CI / CD</a>
             </div>
             <p class="hero-footnote">
@@ -116,195 +130,177 @@
             </p>
           </div>
 
-          <!-- Placeholder for animated GIF / demo -->
-          <aside class="hero-media">
+          <aside class="hero-media workflow-media">
             <div class="media-frame">
-              <div class="media-label">
-                See it in action: from cURL to test results
-              </div>
-
-              <!-- Preview GIF vietoje kortelės -->
-              <div class="media-placeholder">
+              <div class="media-label">See it in action</div>
+              <button
+                type="button"
+                class="workflow-preview"
+                data-demo-src="assets/demo.mov"
+                data-demo-title="From one cURL to API test results"
+                aria-label="Play API testing demo"
+                aria-haspopup="dialog"
+                aria-controls="gifModal"
+              >
                 <img
                   src="assets/rentgen-demo.gif"
-                  alt="Rentgen demo"
-                  id="demoGif"
-                  role="button"
-                  tabindex="0"
-                  aria-label="Play Rentgen demo video"
-                  aria-haspopup="dialog"
-                  aria-controls="gifModal"
+                  alt="Rentgen generating and running API tests from one cURL request"
                 />
-              </div>
+                <span class="preview-play">▶ Watch demo</span>
+              </button>
             </div>
           </aside>
 
-          <!-- FULLSCREEN MODAL – DEDAM PO HERO, NE VIDUJ media-frame -->
-          <div id="gifModal" class="gif-modal" role="dialog" aria-modal="true" aria-label="Rentgen demo video" aria-hidden="true">
-            <button type="button" class="gif-close" aria-label="Close demo video">&times;</button>
-            <video class="gif-modal-content" id="demoVideo" src="assets/demo.mov" controls playsinline preload="none">
-              Your browser does not support this video. <a href="assets/demo.mov">Download the demo</a>.
+          <!-- Shared player for all three workflow demos. -->
+          <div
+            id="gifModal"
+            class="gif-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Rentgen demo video"
+            aria-hidden="true"
+          >
+            <button
+              type="button"
+              class="gif-close"
+              aria-label="Close demo video"
+            >
+              &times;
+            </button>
+            <video
+              class="gif-modal-content"
+              id="demoVideo"
+              src="assets/demo.mov"
+              controls
+              playsinline
+              preload="none"
+            >
+              Your browser does not support this video.
+              <a href="assets/demo.mov">Download the demo</a>.
             </video>
           </div>
         </div>
       </section>
 
-      <!-- Features -->
-      <section id="features" class="section">
-        <div class="container">
-          <header class="section-header">
-            <h2>
-              Before you write tests, run Rentgen. See what your API is really
-              doing.
-            </h2>
-            <p>
-              Rentgen doesn’t just send requests – it stress-tests your
-              assumptions. From trimming and validation to boundary and enum
-              tests, everything is generated from a single cURL.
+      <!-- Main workflows: the first is demonstrated in the hero above. -->
+      <section
+        id="features"
+        class="section section-alt"
+        aria-labelledby="regression-title"
+      >
+        <div class="container workflow-row">
+          <div class="workflow-copy">
+            <p class="eyebrow">2. Compare environments</p>
+            <h2 id="regression-title">Regression out of the box</h2>
+            <p class="workflow-intro">
+              A new build landed in staging. Did it change how your API handles
+              bad input?
             </p>
-          </header>
+            <p>
+              Import a working cURL, map the fields, and click
+              <strong>Generate and Run</strong>. Select the finished run with
+              <strong>Select for Compare</strong> to keep it as your baseline.
+              Then switch to other environment and run again.
+            </p>
+            <p>
+              Click <strong>Compare with Selected</strong> to see what changed.
+              Rentgen uses field context to filter expected differences and
+              highlight potential regressions. If the baseline rejected an input
+              and the new build accepts it, you have a concrete change to
+              investigate, even with zero regression tests written.
+            </p>
+            <a
+              href="api-stories/regression-out-of-the-box.html"
+              class="case-link"
+              >See the full comparison workflow →</a
+            >
+          </div>
+          <div class="workflow-media">
+            <div class="media-frame">
+              <div class="media-label">See it in action</div>
 
-          <!-- Rentgen placement / lifecycle -->
-          <div class="rentgen-flow reveal">
-            <div class="flow-head">
-              <h3>Where Rentgen fits (it replaces nothing)</h3>
-              <p>
-                Developers usually do a quick manual “does it return 200?”
-                check. Rentgen turns that moment into real coverage — before
-                automation, CI/CD, and release gates.
-              </p>
-            </div>
-
-            <ol class="flow-steps" aria-label="API delivery workflow">
-              <li class="flow-step">
-                <div class="step-badge">1</div>
-                <div class="step-body">
-                  <div class="step-title">Build / change an endpoint</div>
-                  <div class="step-desc">
-                    You just shipped code. No integration tests yet. No
-                    confidence yet.
-                  </div>
-                  <div class="step-meta">dev branch · local env</div>
-                </div>
-              </li>
-
-              <li class="flow-step flow-step--rentgen">
-                <div class="step-badge">2</div>
-                <div class="step-body">
-                  <div class="step-title">
-                    Run Rentgen (pre-testing)
-                    <span class="pill">THE GAP</span>
-                  </div>
-                  <div class="step-desc">
-                    Paste one cURL → generate 50–200 tests (invalid data,
-                    boundaries, trimming, headers, security, etc). Get a fast
-                    reality check <strong>before</strong> anyone writes
-                    automation.
-                  </div>
-                  <div class="step-meta">
-                    local-only · no cloud · no scripts
-                  </div>
-                </div>
-              </li>
-
-              <li class="flow-step">
-                <div class="step-badge">3</div>
-                <div class="step-body">
-                  <div class="step-title">Deploy to staging / test</div>
-                  <div class="step-desc">
-                    Now you have a candidate build worth deeper verification.
-                  </div>
-                  <div class="step-meta">staging · test env</div>
-                </div>
-              </li>
-
-              <li class="flow-step">
-                <div class="step-badge">4</div>
-                <div class="step-body">
-                  <div class="step-title">Automation & regression suite</div>
-                  <div class="step-desc">
-                    Write/extend tests where it actually makes sense long-term.
-                  </div>
-                  <div class="step-meta">
-                    RestAssured · Playwright · Postman · contract tests
-                  </div>
-                </div>
-              </li>
-
-              <li class="flow-step">
-                <div class="step-badge">5</div>
-                <div class="step-body">
-                  <div class="step-title">CI/CD gates</div>
-                  <div class="step-desc">
-                    Run suites repeatedly, enforce quality gates, prevent
-                    regressions.
-                  </div>
-                  <div class="step-meta">pipelines · nightly · PR checks</div>
-                </div>
-              </li>
-
-              <li class="flow-step">
-                <div class="step-badge">6</div>
-                <div class="step-body">
-                  <div class="step-title">Release</div>
-                  <div class="step-desc">
-                    Ship with higher confidence and fewer “it worked for me”
-                    surprises.
-                  </div>
-                  <div class="step-meta">production</div>
-                </div>
-              </li>
-            </ol>
-
-            <div class="flow-foot">
-              <div class="flow-note">
-                <strong>Key idea:</strong> Rentgen lives <em>before</em> testing
-                frameworks. It turns the manual cURL/Postman moment into fast,
-                structured coverage — then your existing automation takes over.
-              </div>
+              <button
+                type="button"
+                class="workflow-preview"
+                data-demo-src="assets/rentgen-regression-demo.mp4"
+                data-demo-title="Regression out of the box"
+                aria-label="Play Regression out of the box demo"
+                aria-haspopup="dialog"
+                aria-controls="gifModal"
+              >
+                <img
+                  src="assets/rentgen-regression-demo.gif"
+                  alt="Rentgen comparing baseline and staging test results"
+                  loading="lazy"
+                />
+                <span class="preview-play">▶ Watch demo</span>
+              </button>
             </div>
           </div>
+        </div>
+      </section>
 
-          <br />
-
-          <div class="grid features-grid reveal">
-            <article class="card">
-              <h3>Single cURL in, hundreds of tests out</h3>
-              <p>
-                Paste a cURL and let Rentgen expand it into a full test suite:
-                trims, invalid values, boundary conditions, enum variations and
-                more. Perfect for catching the “this will never happen” bugs.
-              </p>
-            </article>
-
-            <article class="card">
-              <h3>API testing tool before testing</h3>
-              <p>
-                Rentgen checks how your API handles unexpected input:
-                leading/trailing spaces, wrong casing, malformed payloads,
-                missing fields. It doesn’t assume the happy path – it tries to
-                break it.
-              </p>
-            </article>
-
-            <article class="card">
-              <h3>Works offline, by design</h3>
-              <p>
-                No cloud backend, no SaaS layer, no hidden HTTP calls. Rentgen
-                runs as a desktop app on your machine. Perfect for regulated
-                environments and sensitive APIs.
-              </p>
-            </article>
-
-            <article class="card">
-              <h3>Battle-tested on real APIs</h3>
-              <p>
-                We pointed Rentgen at ChatGPT’s API and found real issues in
-                production. OpenAI fixed them immediately – that’s the level of
-                depth Rentgen brings to your own APIs.
-              </p>
-            </article>
+      <section class="section" aria-labelledby="llm-title">
+        <div class="container workflow-row">
+          <div class="workflow-copy">
+            <p class="eyebrow">3. Check LLM replies</p>
+            <h2 id="llm-title">LLM pre-evaluation</h2>
+            <p class="workflow-intro">
+              You changed your support bot’s instructions. Does it still give
+              customers the right answer?
+            </p>
+            <p>
+              Import the cURL for your LLM endpoint and open
+              <strong>Pre-evaluation</strong>. Add a question a customer might
+              ask, such as “How do I reset my password?” Then define what the
+              reply should contain and what it should leave out.
+            </p>
+            <p>
+              For this question, require <strong>“Forgot password”</strong> and
+              exclude <strong>“Send us your password.”</strong> Click
+              <strong>Run</strong>, see which checks passed, and open a failure
+              to read the actual reply. You get specific evidence to review
+              before shipping the change, based on the checks you defined.
+            </p>
           </div>
+          <div class="workflow-media">
+            <div class="media-frame">
+              <div class="media-label">See it in action</div>
+
+              <button
+                type="button"
+                class="workflow-preview"
+                data-demo-src="assets/rentgen-llm-pre-evaluation-demo.mp4"
+                data-demo-title="LLM pre-evaluation"
+                aria-label="Play LLM pre-evaluation demo"
+                aria-haspopup="dialog"
+                aria-controls="gifModal"
+              >
+                <img
+                  src="assets/rentgen-llm-pre-evaluation-demo.gif"
+                  alt="Rentgen checking an LLM reply against required and excluded phrases"
+                  loading="lazy"
+                />
+                <span class="preview-play">▶ Watch demo</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="section section-alt"
+        aria-labelledby="supporting-features-title"
+      >
+        <div class="container supporting-features">
+          <h2 id="supporting-features-title">Keep the work moving</h2>
+          <p>
+            Save requests in collections, switch between environments, pass
+            dynamic variables between requests, and export reports to share what
+            you found. These features support the same workflow: start with a
+            real request, run checks, and inspect the results.
+          </p>
+          <a href="#downloads" class="btn btn-primary">Download Rentgen</a>
         </div>
       </section>
 
@@ -365,18 +361,33 @@
           <div class="grid download-grid">
             <div class="download-card">
               <h3>Windows x64</h3>
-              <a href="https://pub-355476c48cdf4c0fb7b488d2fa85c207.r2.dev/v2.0.0/Rentgen-v2.0.0-win-x64.exe" class="btn btn-primary">Download for Windows</a>
+              <a
+                href="https://pub-355476c48cdf4c0fb7b488d2fa85c207.r2.dev/v2.0.0/Rentgen-v2.0.0-win-x64.exe"
+                class="btn btn-primary"
+                >Download for Windows</a
+              >
               <p class="download-meta">v2.0.0 · Intel / AMD x64 · .exe</p>
             </div>
             <div class="download-card">
               <h3>macOS Apple Silicon</h3>
-              <a href="https://pub-355476c48cdf4c0fb7b488d2fa85c207.r2.dev/v2.0.0/Rentgen-v2.0.0-mac-arm64.dmg" class="btn btn-primary">Download for macOS</a>
+              <a
+                href="https://pub-355476c48cdf4c0fb7b488d2fa85c207.r2.dev/v2.0.0/Rentgen-v2.0.0-mac-arm64.dmg"
+                class="btn btn-primary"
+                >Download for macOS</a
+              >
               <p class="download-meta">v2.0.0 · Apple Silicon (ARM64) · .dmg</p>
             </div>
             <div class="download-card">
               <h3>All versions on GitHub</h3>
-              <a href="https://github.com/Rentgen-io/Rentgen/releases" class="btn btn-ghost">Download from GitHub</a>
-              <p class="download-meta">All versions including Intel Macs, Linux, and other builds, check the available release assets on GitHub.</p>
+              <a
+                href="https://github.com/Rentgen-io/Rentgen/releases"
+                class="btn btn-ghost"
+                >Download from GitHub</a
+              >
+              <p class="download-meta">
+                All versions including Intel Macs, Linux, and other builds,
+                check the available release assets on GitHub.
+              </p>
             </div>
           </div>
 
@@ -540,14 +551,12 @@
             </article>
 
             <article class="case-card">
-              <h3>
-                Stripe API — Inconsistencies Observed in Two Minutes
-              </h3>
+              <h3>Stripe API — Inconsistencies Observed in Two Minutes</h3>
               <p>
-                A focused case study of a Stripe API request tested with Rentgen.
-                In two minutes, the checks highlighted inconsistencies in request
-                handling and validation, along with response-header observations
-                worth reviewing in context.
+                A focused case study of a Stripe API request tested with
+                Rentgen. In two minutes, the checks highlighted inconsistencies
+                in request handling and validation, along with response-header
+                observations worth reviewing in context.
               </p>
 
               <a
