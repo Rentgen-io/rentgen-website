@@ -1337,7 +1337,7 @@ body {
 /* Homepage placement in the development process */
 .placement-section { padding-top: 1rem; }
 .placement-steps { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-.placement-steps .flow-step { grid-column: auto; grid-template-columns: minmax(0, 1fr); }
+.placement-steps .flow-step { grid-column: auto; grid-template-columns: minmax(0, 1fr); align-content: start; }
 .placement-steps .step-body { min-width: 0; }
 .placement-steps .step-title { flex-wrap: wrap; }
 .placement-steps .step-badge { margin-bottom: 0.25rem; }
