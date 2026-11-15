@@ -1333,3 +1333,19 @@ body {
   .workflow-row { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
   .hero-media { order: 0; }
 }
+
+/* Homepage placement in the development process */
+.placement-section { padding-top: 1rem; }
+.placement-steps { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.placement-steps .flow-step { grid-column: auto; grid-template-columns: minmax(0, 1fr); }
+.placement-steps .step-body { min-width: 0; }
+.placement-steps .step-title { flex-wrap: wrap; }
+.placement-steps .step-badge { margin-bottom: 0.25rem; }
+.placement-section .flow-note { margin-top: 0; }
+@media (max-width: 1000px) {
+  .placement-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .placement-steps { grid-template-columns: minmax(0, 1fr); }
+  .placement-steps .flow-step { grid-template-columns: 34px minmax(0, 1fr); }
+}
