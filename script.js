@@ -1,5 +1,28 @@
 // script.js
 
+// Update these two installer URLs for each Rentgen release.
+const rentgenDownloadUrls = {
+  windows: "https://pub-355476c48cdf4c0fb7b488d2fa85c207.r2.dev/v3.0.0/Rentgen-v3.0.0-win-x64.exe",
+  macos: "https://pub-355476c48cdf4c0fb7b488d2fa85c207.r2.dev/v3.0.0/Rentgen-v3.0.0-mac-arm64.dmg",
+};
+
+function getRentgenDownloadVersion(url) {
+  return new URL(url).pathname.match(/\/(v\d+\.\d+\.\d+(?:-[\w.-]+)?)\//)?.[1];
+}
+
+for (const [platform, url] of Object.entries(rentgenDownloadUrls)) {
+  document.querySelectorAll(`[data-download-platform="${platform}"]`).forEach((link) => {
+    link.href = url;
+  });
+
+  const version = getRentgenDownloadVersion(url);
+  if (version) {
+    document.querySelectorAll(`[data-download-version="${platform}"]`).forEach((label) => {
+      label.textContent = `${version} · `;
+    });
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const header = document.querySelector(".site-header");
   const nav = document.querySelector(".site-nav");

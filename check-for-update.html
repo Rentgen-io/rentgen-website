@@ -143,8 +143,7 @@
 
   <script src="script.js"></script>
   <script>
-    // CHANGE THIS ON EVERY RELEASE
-    const LATEST_VERSION = "2.0.0";
+    const LATEST_VERSION = getRentgenDownloadVersion(rentgenDownloadUrls.windows)?.slice(1);
 
     function getQueryParam(name) {
       const params = new URLSearchParams(window.location.search);
@@ -158,6 +157,10 @@
 
       if (!card) return;
 
+      if (!LATEST_VERSION) {
+        card.textContent = "The latest Rentgen version could not be determined.";
+        return;
+      }
 
       if (!rawCurrent || !versionPattern.test(rawCurrent)) {
         card.innerHTML = `
@@ -177,13 +180,16 @@
       }
 
       const current = rawCurrent;
-      const isLatest = current === LATEST_VERSION;
+      const latestParts = LATEST_VERSION.split("-")[0].split(".").map(Number);
+      const currentParts = current.split(".").map(Number);
+      const difference = currentParts.findIndex((part, index) => part !== latestParts[index]);
+      const needsUpdate = difference !== -1 && currentParts[difference] < latestParts[difference];
 
-      if (isLatest) {
+      if (!needsUpdate) {
         card.innerHTML = `
           <h3 class="update-title">You’re up to date.</h3>
           <p class="update-text">
-            Your Rentgen build matches the latest release.
+            Your Rentgen build is at least as recent as the latest release.
           </p>
           <div class="version-row">
             <span class="version-pill"><strong>Your version:</strong> v${current}</span>
@@ -201,15 +207,20 @@
         card.innerHTML = `
           <h3 class="update-title">There’s a newer Rentgen build available.</h3>
           <p class="update-text">
-            You’re running an older version of Rentgen. If you want the latest fixes and new tests,
-            grab the newest release from GitHub.
+            You’re running an older version of Rentgen. Download the latest installer for your platform.
           </p>
           <div class="version-row">
             <span class="version-pill"><strong>Your version:</strong> v${current}</span>
             <span class="version-pill"><strong>Latest version:</strong> v${LATEST_VERSION}</span>
           </div>
           <div class="update-actions">
-            <a href="https://github.com/Rentgen-io/Rentgen/releases/latest" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+            <a href="${rentgenDownloadUrls.windows}" class="btn btn-primary">
+              Download for Windows x64
+            </a>
+            <a href="${rentgenDownloadUrls.macos}" class="btn btn-primary">
+              Download for macOS Apple Silicon
+            </a>
+            <a href="https://github.com/Rentgen-io/Rentgen/releases/latest" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">
               Open latest releases on GitHub
             </a>
             <a href="https://rentgen.io/" class="btn btn-ghost">
